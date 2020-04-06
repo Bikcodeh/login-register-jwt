@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
 import { map } from 'rxjs/operators';
 import { HttpHeaders } from '@angular/common/http';
+import { getUsers, login, meData } from './operations/query';
 
 @Component({
   selector: 'app-root',
@@ -17,17 +17,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const getUsers = gql`
-      query{
-        users{
-          id
-          name
-          lastname
-          email
-          registerDate
-        }
-      }
-    `;
     this.apollo
       .watchQuery(
         {
@@ -40,15 +29,6 @@ export class AppComponent implements OnInit {
         console.log(result);
       });
 
-    const login = gql`
-        query login($email: String!, $password: String!){
-          login(email: $email, password: $password){
-            status
-            message
-            token
-          }
-        }
-      `;
     this.apollo
       .watchQuery(
         {
@@ -64,21 +44,6 @@ export class AppComponent implements OnInit {
       })).subscribe((result) => {
         console.log(result);
       });
-
-    const meData = gql`
-    query{
-        me{
-          status
-          message
-          user{
-            id
-            name
-            lastname
-            email
-          }
-        }
-      }
-      `;
 
     this.apollo
       .watchQuery(
