@@ -1,12 +1,12 @@
 <h2>Formulario de inicio de sesi&oacute;n</h2>
-<form>
+<form (ngSubmit)="save()" #forma="ngForm">
   <div class="form-group">
-    <label for="exampleInputEmail1">Correo</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo">
+    <label for="email">Correo</label>
+    <input name="email" #email="ngModel" [(ngModel)]="user.email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Ingrese su correo">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña">
+    <label for="password">Contraseña</label>
+    <input name="password" #password="ngModel" [(ngModel)]="user.password" type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
   </div>
-  <button type="submit" class="btn btn-primary">Ingresar</button>
+  <button [disabled]="!forma.valid" type="submit" class="btn btn-primary">Ingresar</button>
 </form>
