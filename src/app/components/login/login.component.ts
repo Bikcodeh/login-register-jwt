@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
-
+  error: boolean;
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
@@ -21,7 +21,15 @@ export class LoginComponent implements OnInit {
   save(){
     console.log(this.user);
     this.api.login(this.user.email, this.user.password).subscribe( (result: LoginResult) => {
-      console.log(result);
+      if (result.status){
+        this.error = false;
+        localStorage.setItem('tokenJWT', result.token);
+        console.log('Login correcto');
+      }else{
+        this.error = true;
+        localStorage.removeItem('tokenJWT');
+        console.log('Login incorrecto');
+      }
     });
   }
 
