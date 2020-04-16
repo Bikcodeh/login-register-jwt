@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { User } from './user.interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-users',
@@ -10,7 +11,7 @@ import { User } from './user.interface';
 export class UsersComponent implements OnInit {
 
   users: User[];
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private auth: AuthService) { }
 
   ngOnInit(): void {
     this.api.getUsers().subscribe((result) => {

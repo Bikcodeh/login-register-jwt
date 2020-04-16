@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { MeData } from './me.interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-me',
@@ -11,12 +12,12 @@ import { MeData } from './me.interface';
 export class MeComponent implements OnInit {
 
   user: any;
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
     // hay token
     if (localStorage.getItem('tokenJWT') !== null) {
-      this.api.getMe().subscribe((result: MeData) => {
+      this.auth.getMe().subscribe((result: MeData) => {
         console.log(result);
         if (result.status){
           console.log(result.user);

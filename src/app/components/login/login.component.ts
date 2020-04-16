@@ -3,6 +3,7 @@ import { LoginData, LoginResult } from './login.interface';
 import { ApiService } from './../../services/api.service';
 import { Router } from '@angular/router';
 import { MeData } from '../me/me.interface';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,12 +17,12 @@ export class LoginComponent implements OnInit {
   };
   error: boolean;
   show: boolean;
-  constructor(private api: ApiService, private router: Router) { }
+  constructor(private api: ApiService, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
     // hay token
     if (localStorage.getItem('tokenJWT') !== null) {
-      this.api.getMe().subscribe((result: MeData) => {
+      this.auth.getMe().subscribe((result: MeData) => {
         console.log(result);
         if (result.status){
           console.log(result.user);

@@ -40,23 +40,4 @@ export class ApiService {
         return result.data.login;
       }));
   }
-
-  // Nuestra info con el token
-  getMe() {
-    return this.apollo
-      .watchQuery(
-        {
-          query: meData,
-          fetchPolicy: 'network-only',
-          context: {
-            headers: new HttpHeaders({
-              authorization: localStorage.getItem('tokenJWT')
-            })
-          }
-        }
-      ).valueChanges.pipe(map((result: any) => {
-        return result.data.me;
-      }));
-  }
-
 }
