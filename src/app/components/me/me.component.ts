@@ -10,6 +10,7 @@ import { MeData } from './me.interface';
 })
 export class MeComponent implements OnInit {
 
+  user: any;
   constructor(private api: ApiService, private router: Router) { }
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class MeComponent implements OnInit {
         console.log(result);
         if (result.status){
           console.log(result.user);
+          this.user = result.user;
         } else {
           console.log('token no valido');
           localStorage.removeItem('tokenJWT');

@@ -10,6 +10,7 @@ export const meData = gql`
         name
         lastname
         email
+        registerDate
       }
     }
   }
