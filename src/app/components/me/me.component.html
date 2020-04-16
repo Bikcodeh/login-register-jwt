@@ -5,7 +5,7 @@
         <h5 class="card-title">{{ user.name }} {{ user.lastname }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ user.email }}</h6>
         <p class="card-text">{{ user.registerDate }}</p>
-        <a href="#" class="card-link">Another link</a>
+        <button (click)="logout()" class="btn btn-outline-info">Cerrar sesion</button>
       </div>
     </div>
   </div>

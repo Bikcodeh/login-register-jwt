@@ -28,6 +28,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/me']);
         }
       });
+    } else {
+      this.show = true;
     }
   }
 

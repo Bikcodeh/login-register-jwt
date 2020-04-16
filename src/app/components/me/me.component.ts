@@ -24,12 +24,17 @@ export class MeComponent implements OnInit {
         } else {
           console.log('token no valido');
           localStorage.removeItem('tokenJWT');
-          this.router.navigate(['/login']);
+          this.logout();
         }
       });
     } else { // no hay token
-      this.router.navigate(['/login']);
+      this.logout();
     }
+  }
+
+  logout() {
+    localStorage.removeItem('tokenJWT');
+    this.router.navigate(['/login']);
   }
 
 }

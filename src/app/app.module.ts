@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { GraphqlModule } from './graphql/graphql.module';
 import { LoginComponent } from './components/login/login.component';
 import { MeComponent } from './components/me/me.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    MeComponent
+    MeComponent,
+    UsersComponent
   ],
   imports: [
   BrowserModule,
