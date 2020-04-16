@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { MeData } from 'src/app/components/me/me.interface';
 
 @Component({
   selector: 'app-navbar',
@@ -8,9 +9,23 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  access: boolean;
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('tokenJWT') !== null) {
+      this.auth.getMe().subscribe((result: MeData) => {
+        if (result.status){
+          this.access = true;
+        } else {
+          this.access = false;
+        }
+        console.log('get me' + this.access);
+      });
+    } else {
+      this.access = false;
+      console.log(this.access);
+    }
   }
 
 }
