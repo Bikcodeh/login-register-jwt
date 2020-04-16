@@ -42,9 +42,11 @@ export class LoginComponent implements OnInit {
         this.error = false;
         localStorage.setItem('tokenJWT', result.token);
         console.log('Login correcto');
+        this.auth.updateStateSesion(true);
         this.router.navigate(['/me']);
       }else{
         this.error = true;
+        this.auth.updateStateSesion(false);
         localStorage.removeItem('tokenJWT');
         console.log('Login incorrecto');
       }

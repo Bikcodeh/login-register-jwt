@@ -10,7 +10,11 @@ import { MeData } from 'src/app/components/me/me.interface';
 export class NavbarComponent implements OnInit {
 
   access: boolean;
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) {
+    this.auth.accessVar$.subscribe( (data: boolean) => {
+      console.log(data);
+    });
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('tokenJWT') !== null) {
