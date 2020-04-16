@@ -22,9 +22,5 @@ export class AppComponent implements OnInit {
     this.api.login('bikcodeh@gmail.com', '1234').subscribe((result) => {
       console.log(result);
     });
-
-    this.api.getMe('asdaa').subscribe((result) => {
-      console.log(result);
-    });
   }
 }
