@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { MeData } from 'src/app/components/me/me.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +11,15 @@ import { MeData } from 'src/app/components/me/me.interface';
 export class NavbarComponent implements OnInit {
 
   access: boolean;
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
     this.auth.accessVar$.subscribe( (data: boolean) => {
       console.log(data);
+      if (data === false && this.access) {
+        this.access = false;
+        this.logout();
+      } else {
+        this.access = true;
+      }
     });
   }
 
@@ -30,6 +37,11 @@ export class NavbarComponent implements OnInit {
       this.access = false;
       console.log(this.access);
     }
+  }
+
+  logout() {
+    localStorage.removeItem('tokenJWT');
+    this.router.navigate(['/login']);
   }
 
 }
