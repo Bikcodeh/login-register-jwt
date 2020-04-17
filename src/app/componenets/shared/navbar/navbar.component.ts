@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
         this.access = false;
         this.logout();
       } else {
-        this.access = true;
+        this.access = data;
       }
     });
   }
@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout() {
+    this.auth.updateStateSesion(false);
     localStorage.removeItem('tokenJWT');
     this.router.navigate(['/login']);
   }
