@@ -43,12 +43,13 @@ export class ApiService {
       }));
   }
 
-  register(user: RegisterData) {
-    return this.apollo.mutate({
-      mutation: registerData,
-      variables: {
-        user
-      }
+  register(user: RegisterData): any {
+    return this.apollo
+      .mutate({
+        mutation: registerData,
+        variables: {
+          user
+        }
     });
   }
 }

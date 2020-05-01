@@ -1,10 +1,16 @@
 <div class="row">
   <div class="col-lg"></div>
   <div class="col-lg-4">
-    <div class="alert alert-warning" role="alert" *ngIf="error">
-      Los credenciales introducidos no son correctos
-    </div>
     <h2>Formulario registro</h2>
+    <div class="alert alert-success" role="alert" *ngIf="operation == 1">
+      {{ message }}
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="operation == 3">
+      {{ message }}
+    </div>
+    <div class="alert alert-warning" role="alert" *ngIf="operation == 2">
+      {{ message }}
+    </div>
     <form (ngSubmit)="save()" #forma="ngForm">
       <div class="form-group">
         <label for="name">Nombre</label>
