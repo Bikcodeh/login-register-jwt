@@ -1,1 +1,110 @@
-<p>register works!</p>
+<div class="row">
+  <div class="col-lg"></div>
+  <div class="col-lg-4">
+    <div class="alert alert-warning" role="alert" *ngIf="error">
+      Los credenciales introducidos no son correctos
+    </div>
+    <h2>Formulario de inicio de sesi&oacute;n</h2>
+    <form (ngSubmit)="save()" #forma="ngForm">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="register.name"
+          type="text"
+          class="form-control"
+          id="name"
+          aria-describedby="nameHelp"
+          placeholder="Ingrese su nombre"
+          [ngClass]="{
+            'is-valid': !name.invalid,
+            'is-invalid': name.invalid
+          }"
+          required
+        />
+        <div *ngIf="name.invalid && (name.dirty || name.touched)">
+          <div *ngIf="name.errors.required">
+            <p class="text-danger">Nombre requerido</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="lastname">Apellido</label>
+        <input
+          name="lastname"
+          #lastname="ngModel"
+          [(ngModel)]="register.lastname"
+          type="text"
+          class="form-control"
+          id="lastname"
+          aria-describedby="lastnameHelp"
+          placeholder="Ingrese su apellido"
+          [ngClass]="{
+            'is-valid': !lastname.invalid,
+            'is-invalid': lastname.invalid
+          }"
+          required
+        />
+        <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+          <div *ngIf="lastname.errors.required">
+            <p class="text-danger">Apellido requerido</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Correo</label>
+        <input
+          name="email"
+          #email="ngModel"
+          [(ngModel)]="register.email"
+          type="email"
+          class="form-control"
+          id="email"
+          aria-describedby="emailHelp"
+          placeholder="Ingrese su correo"
+          [ngClass]="{
+            'is-valid': !email.invalid,
+            'is-invalid': email.invalid
+          }"
+          required
+          pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$"
+        />
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors.required">
+            <p class="text-danger">Correo requerido</p>
+          </div>
+          <div *ngIf="email.errors && email.errors.pattern">
+            <p class="text-danger">Por favor ingrese un correo valido</p>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input
+          name="password"
+          required
+          #password="ngModel"
+          [(ngModel)]="register.password"
+          type="password"
+          class="form-control"
+          id="password"
+          placeholder="Ingrese su contraseña"
+          [ngClass]="{
+            'is-valid': !password.invalid,
+            'is-invalid': password.invalid
+          }"
+        />
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.errors.required">
+            <p class="text-danger">Contraseña requerida</p>
+          </div>
+        </div>
+      </div>
+      <button [disabled]="!forma.valid" type="submit" class="btn btn-primary">
+        Ingresar
+      </button>
+    </form>
+  </div>
+  <div class="col-lg"></div>
+</div>

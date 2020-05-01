@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MeData } from '../me/me.interface';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegisterData } from './register.interface';
 
 @Component({
   selector: 'app-register',
@@ -9,6 +10,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
+  register: RegisterData = {
+    name: '',
+    lastname: '',
+    password: '',
+    email: ''
+  };
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
@@ -24,6 +31,10 @@ export class RegisterComponent implements OnInit {
     } else {
       this.auth.updateStateSesion(false);
     }
+  }
+
+  save() {
+    console.log(this.register);
   }
 
 }
