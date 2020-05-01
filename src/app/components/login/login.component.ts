@@ -29,21 +29,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     // hay token
-    if (localStorage.getItem('tokenJWT') !== null) {
-      this.auth.getMe().subscribe((result: MeData) => {
-        console.log(result);
-        if (result.status){
-          console.log(result.user);
-          this.router.navigate(['/me']);
-        }
-      });
-    } else {
-      this.show = true;
-    }
+   this.auth.start();
   }
 
   save(){
-    console.log(this.user);
     this.api.login(this.user.email, this.user.password).subscribe( (result: LoginResult) => {
       this.show = true;
       if (result.status){

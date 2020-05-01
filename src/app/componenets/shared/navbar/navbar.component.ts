@@ -24,28 +24,11 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('tokenJWT') !== null) {
-      this.auth.getMe().subscribe((result: MeData) => {
-        if (result.status){
-          this.access = true;
-        } else {
-          this.access = false;
-        }
-        console.log('get me' + this.access);
-      });
-    } else {
-      this.access = false;
-      console.log(this.access);
-    }
+    this.auth.start();
   }
 
   logout() {
-    this.auth.updateStateSesion(false);
-    localStorage.removeItem('tokenJWT');
-    const currentRouter = this.router.url;
-    if (currentRouter !== '/register' && currentRouter !== '/users'){
-      this.router.navigate(['/login']);
-    }
+    this.auth.logout();
   }
 
 }
