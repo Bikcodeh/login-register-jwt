@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MeData } from '../me/me.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { RegisterData } from './register.interface';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
     password: '',
     email: ''
   };
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService, private api: ApiService) { }
 
   ngOnInit(): void {
     if (localStorage.getItem('tokenJWT') !== null) {
@@ -34,7 +35,11 @@ export class RegisterComponent implements OnInit {
   }
 
   save() {
-    console.log(this.register);
+    this.api.register(this.register).subscribe( ( { data } ) => {
+      console.log(data);
+    }, ( error ) => {
+      console.log('Error enviando el query', error);
+    });
   }
 
 }
