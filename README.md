@@ -17,7 +17,7 @@ Tiene validacion de rutas, tiene validacion del token y una expiracion del mismo
 
 Respecto a GraphQL, hacemos uso de mutation y queries. 
 
-![Login page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/login_page.png?raw=true "Login page") 
-![Register page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/register_page.png?raw=true "Register page") 
-![Usuarios page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/usuarios.png?raw=true "Usuarios page") 
-![Profile page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/profile.png?raw=true "Profile page") 
+![Login page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/login_page.png "Login page") 
+![Register page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/register_page.PNG "Register page") 
+![Usuarios page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/usuarios.PNG "Usuarios page") 
+![Profile page](https://github.com/Bikcodeh/login-register-jwt/blob/refactor/src/assets/pictures/profile.PNG "Profile page") 
