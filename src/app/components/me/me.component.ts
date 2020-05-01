@@ -12,31 +12,37 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MeComponent implements OnInit {
 
   user: any;
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(private router: Router, private auth: AuthService) {
+    this.auth.userVar$.subscribe((data: MeData) => {
+      if (data !== null && data !== undefined) {
+      this.user = data.user;
+    }
+  });
+}
 
-  ngOnInit(): void {
-    // hay token
-    if (localStorage.getItem('tokenJWT') !== null) {
-      this.auth.getMe().subscribe((result: MeData) => {
-        console.log(result);
-        if (result.status){
-          console.log(result.user);
-          this.user = result.user;
-        } else {
-          console.log('token no valido');
-          localStorage.removeItem('tokenJWT');
-          this.logout();
-        }
-      });
-    } else { // no hay token
+ngOnInit(): void {
+  // hay token
+  if (localStorage.getItem('tokenJWT') !== null) {
+  this.auth.getMe().subscribe((result: MeData) => {
+    console.log(result);
+    if (result.status) {
+      console.log(result.user);
+      this.user = result.user;
+    } else {
+      console.log('token no valido');
+      localStorage.removeItem('tokenJWT');
       this.logout();
     }
+  });
+} else { // no hay token
+  this.logout();
+}
   }
 
-  logout() {
-    localStorage.removeItem('tokenJWT');
-    this.auth.updateStateSesion(false);
-    this.router.navigate(['/login']);
-  }
+logout() {
+  localStorage.removeItem('tokenJWT');
+  this.auth.updateStateSesion(false);
+  this.router.navigate(['/login']);
+}
 
 }

@@ -17,7 +17,15 @@ export class LoginComponent implements OnInit {
   };
   error: boolean;
   show: boolean;
-  constructor(private api: ApiService, private router: Router, private auth: AuthService) { }
+  constructor(private api: ApiService, private router: Router, private auth: AuthService) {
+    this.auth.userVar$.subscribe((data: MeData) => {
+      if (data == null || data.status === false) {
+        this.show = true;
+      } else {
+        this.show = false;
+      }
+    });
+  }
 
   ngOnInit(): void {
     // hay token
